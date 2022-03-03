@@ -29,13 +29,13 @@ jobs:
       run: |
           echo 'Setting domain IP'
           sudo echo "54.80.73.82 fortify.cyberxdemo.com" | sudo tee -a /etc/hosts
-          echo: 'downloading SCA installer'
+          echo 'downloading SCA installer'
           wget "https://fortify.cyberxdemo.com:8443/ssc/downloads/Fortify_SCA_and_Apps_21.2.2_linux_x_64.run"
           wget "https://fortify.cyberxdemo.com:8443/ssc/downloads/fortify.license"
           ls -l
           chmod +x "Fortify_SCA_and_Apps_21.2.2_linux_x64.run"
           install_dir="/opt/Fortify_SCA_and_Apps_21.2.2"
-          ./Fortify_SCA_and_Apps_21.2.2_;inux_x64.run --fortify_license_path ./fortify_license_path ./fortify.license --mode unattended
+          ./Fortify_SCA_and_Apps_21.2.2_linux_x64.run --fortify_license_path ./fortify_license_path ./fortify.license --mode unattended
           pwd
           ls -l
           export PATH=$PATH:/home/runner/Fortify/Fortify_SCA_and_Apps_21.2.2/bin
@@ -44,7 +44,7 @@ jobs:
           sourceanalyzer -b github-java-build -source 1.8 -cp "./**/*.jar" "./**/*.java" "./**/*.js" "./**/*.jsp" "./**/*.html" "./**/*.properties" "./**/*.xml"
           sourceanalyzer -b github-java-build -scan -f github-sast-report.fpr
           fortifyclient -url https://fortify.cyberxdemo.com:8443/ssc -authtoken 516147e5-15ee-4f01-a97a-00ab0b0a589d -application "github_rabbitmq" -applicationVersion "1.0" uploadFPR -file github-sast-report.fpr
-          
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
