@@ -38,7 +38,7 @@ jobs:
           ./Fortify_SCA_and_Apps_21.2.2_;inux_x64.run --fortify_license_path ./fortify_license_path ./fortify.license --mode unattended
           pwd
           ls -l
-          export PATH=$PATH:/home/runner/Fortify/Fortify_SCA_andApps_21.2.2/bin
+          export PATH=$PATH:/home/runner/Fortify/Fortify_SCA_and_Apps_21.2.2/bin
           fortifyupdate
           sourceanalyzer -b github-java-build -clean
           sourceanalyzer -b github-java-build -source 1.8 -cp "./**/*.jar" "./**/*.java" "./**/*.js" "./**/*.jsp" "./**/*.html" "./**/*.properties" "./**/*.xml"
