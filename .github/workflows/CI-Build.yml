@@ -26,17 +26,19 @@ jobs:
       run: mvn -B package --file pom.xml
     
     - name: git-bash
+      # You may pin to the exact commit or the version.
+      # uses: pkg-src/github-action-git-bash@d7e3f57b86fcf5d919a5ba685d459583735b7611
+      # uses: pkg-src/github-action-git-bash@v1.1
       run: |
           echo 'Setting domain IP'
-          sudo echo "54.80.73.82 fortify.cyberxdemo.com" | sudo tee -a /etc/hosts
+          sudo echo “54.80.73.82 fortify.cyberxdemo.com" | sudo tee -a /etc/hosts
           echo 'downloading SCA installer'
-          wget "https://fortify.cyberxdemo.com:8443/ssc/downloads/Fortify_SCA_and_Apps_21.2.2_linux_x_64.run"
+          wget "https://fortify.cyberxdemo.com:8443/ssc/downloads/Fortify_SCA_and_Apps_21.2.2_linux_x64.run"
           wget "https://fortify.cyberxdemo.com:8443/ssc/downloads/fortify.license"
           ls -l
           chmod +x "Fortify_SCA_and_Apps_21.2.2_linux_x64.run"
-          install_dir="/opt/Fortify_SCA_and_Apps_21.2.2"
-          ./Fortify_SCA_and_Apps_21.2.2_linux_x64.run --fortify_license_path ./fortify_license_path ./fortify.license --mode unattended
-          pwd
+          install_dir="/opt/Fortify/Fortify_SCA_and_Apps_21.2.2"
+          ./Fortify_SCA_and_Apps_21.2.2_linux_x64.run --fortify_license_path ./fortify.license --mode unattended          pwd
           ls -l
           export PATH=$PATH:/home/runner/Fortify/Fortify_SCA_and_Apps_21.2.2/bin
           fortifyupdate
