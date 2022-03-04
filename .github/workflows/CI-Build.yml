@@ -77,7 +77,7 @@ jobs:
     # Uploaded the generated file containing Fortify vulnerabilities to GitHub.
     - uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: ./gh-fortify-sast.sarif
+        sarif_file: './gh-fortify-sast.sarif'
     # Optionally store the generated file for troubleshooting purposes.
     - uses: actions/upload-artifact@v2
       if: always()
